@@ -1,10 +1,9 @@
 import React from 'react';
 
-// import CartIcon from '../../../../assets/icons/cart.svg';
+import LoaderIcon from 'src/assets/icons/loader.svg';
 
 export const ICON_LIST = {
-  cart: () => null,
-  // cart: CartIcon,
+  loader: LoaderIcon,
 };
 
 interface IProps extends React.SVGAttributes<SVGElement> {
