@@ -1,0 +1,67 @@
+@import 'src/styles/utils';
+
+.button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  transition: background-color 0.25s;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+
+  &_primary {
+    color: $c-white;
+    background-color: $c-primary;
+  
+    &:hover {
+      background-color: $c-primary-hover;
+    }
+  
+    &:active {
+      background-color: $c-primary-active;
+    }
+  
+    &:focus {
+      border: 2px solid $c-black;
+    }
+  }
+
+  &_disabled {
+    cursor: not-allowed;
+    background-color: $c-primary-disabled;
+  
+    &:hover, &:active, &:focus {
+      background-color: $c-primary-disabled;
+      border: 2px solid transparent;
+    }
+  }
+
+  &_circle {
+    border-radius: 100%;
+  }
+}
+
+.icon {
+  width: 12px;
+  height: 12px;
+
+  &_left {
+    margin-right: 10px;
+  }
+
+  &_right {
+    margin-left: 10px;
+  }
+
+  &_loading {
+    width: 24px;
+    height: 24px;
+    animation-name: rotate;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+  }
+}

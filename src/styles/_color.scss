@@ -1,54 +1,21 @@
-// BRAND
-$c-primary: #F15A24;
-$c-primary-variant: #F79C7C;
-$c-secondary: #404040;
-$c-secondary-variant: #8C8C8C;
+$c-primary: #6E41E2;
+$c-primary-disabled: #E3DAF9;
+$c-primary-hover: #5835B0;
+$c-primary-active: #472C8A;
 
-// BASE
-$c-light: #F1F2F3;
-$c-light-variant: #FFFFFF;
-$c-gray: #72757E;
-$c-gray-variant: #8D8F9A;
-$c-dark: #1D1F22;
-$c-dark-variant: #43464E;
-
-// CONTEXT
-$c-info: #0468DB;
-$c-info-variant: #B4D2F4;
-$c-success: #5ECE7B;
-$c-success-variant: #9EE2B0;
-$c-warning: #ECC713;
-$c-warning-variant: #F6E389;
-$c-danger: #D12727;
-$c-danger-variant: #FCEDE8;
-
-// FONT
-$c-body: #FFFFFF;
-$c-text: #1D1F22;
-$c-text-muted: #72757E;
-$c-text-disable: #E0E0E1;
-$c-link: #43464E;
-$c-link-hover: #1D1F22;
-$c-black: #1D1F22;
+$c-black: #111;
 $c-white: #FFFFFF;
+$c-white-s: rgba(255, 255, 255, 0.88);
 
-// INTERNAL
-$c-orange-primary: #F15A24;
-$c-orange-secondary: #F79C7C;
-$c-slate-primary: #404040;
-$c-slate-secondary: #8C8C8C;
-$c-green-primary: #5ece7b;
-$c-green-secondary: #9ee2b0;
-$c-dark-primary: #1d1f22;
-$c-dark-secondary: #43464E;
-$c-gray-primary: #72757E;
-$c-gray-secondary: #8D8F9A;
-$c-gray-accent: #e0e0e1;
-$c-light-primary: #f1f2f3;
-$c-light-secondary: #ffffff;
-$c-red-primary: #d12727;
-$c-red-secondary: #fcede8;
-$c-yellow-primary: #ecc713;
-$c-yellow-secondary: #f6e389;
-$c-blue-primary: #0468DB;
-$c-blue-secondary: #e1f4fe;
+$c-gray: rgba(17, 17, 17, 0.48);
+$c-gray-m: #FAFAFA;
+$c-gray-l: #F1F1F1;
+$c-gray-s: #D4D4D4;
+$c-gray-k: #6B6B6B;
+
+$c-red-girl: #F9E3E3;
+$c-red-boy: #F9E3E3;
+$c-red: #DB524E;
+$c-red-super: #C7302B;
+
+$c-green: #27AE60;
