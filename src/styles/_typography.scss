@@ -1,0 +1,61 @@
+@import './adaptive';
+
+body {
+  font-size: 0.75rem;
+
+  @media #{$screen-sm} {
+    font-size: 0.875rem;
+  }
+
+  @media #{$screen-md} {
+    font-size: 1rem;
+  }
+
+  @media #{$screen-xl} {
+    font-size: 1.125rem;
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+
+  @media #{$screen-md} {
+    font-size: 2.625rem;
+  }
+}
+
+h2 {
+  font-size: 1.5rem;
+
+  @media #{$screen-md} {
+    font-size: 2.25rem;
+  }
+}
+
+h3 {
+  font-size: 1.125rem;
+
+  @media #{$screen-md} {
+    font-size: 1.625rem;
+  }
+}
+
+h4 {
+  font-size: 1.125rem;
+
+  @media #{$screen-md} {
+    font-size: 1.25rem;
+  }
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 1rem;
+
+  @media #{$screen-md} {
+    font-size: 0.875rem;
+  }
+}
