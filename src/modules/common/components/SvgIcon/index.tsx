@@ -12,6 +12,7 @@ export const ICON_LIST = {
 };
 
 export interface IProps extends React.SVGAttributes<SVGElement> {
+  /** Название иконки */
   kind?: keyof typeof ICON_LIST;
 }
 

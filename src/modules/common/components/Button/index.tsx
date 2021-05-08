@@ -11,7 +11,7 @@ export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Состояние загрузки */
   isLoading?: boolean;
   /** Иконка */
-  icon: keyof typeof ICON_LIST | null;
+  icon?: keyof typeof ICON_LIST;
   /** Положение иконки относительно текста */
   iconSide?: 'left' | 'right';
   /** Кнопка в виде круга (только с иконкой) */
@@ -26,7 +26,7 @@ const Button: React.FC<IProps> = ({
   disabled,
   isLoading,
   isCircle,
-  icon = null,
+  icon,
   iconSide = 'left',
   theme = 'primary',
   type = 'button',
