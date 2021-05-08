@@ -9,7 +9,7 @@ export const ICON_LIST = {
 };
 
 interface IProps extends React.SVGAttributes<SVGElement> {
-  kind: keyof typeof ICON_LIST;
+  kind?: keyof typeof ICON_LIST;
 }
 
 const SvgIcon: React.FC<IProps> = ({ kind, ...rest }) => {

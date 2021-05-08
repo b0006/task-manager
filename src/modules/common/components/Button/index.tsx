@@ -8,7 +8,7 @@ import styles from './Button.module.scss';
 export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   isLoading?: boolean;
-  icon?: keyof typeof ICON_LIST;
+  icon: keyof typeof ICON_LIST | null;
   iconSide?: 'left' | 'right';
   isCircle?: boolean;
   theme?: 'primary' | 'primary-white' | 'secondary' | 'secondary-white' | 'flat' | 'flat-white';
@@ -20,7 +20,7 @@ const Button: React.FC<IProps> = ({
   disabled,
   isLoading,
   isCircle,
-  icon,
+  icon = null,
   iconSide = 'left',
   theme = 'primary',
   type = 'button',
