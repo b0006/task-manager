@@ -6,11 +6,17 @@ import Icon, { ICON_LIST } from '../SvgIcon';
 import styles from './Button.module.scss';
 
 export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Текст кнопки */
   text?: string;
+  /** Состояние загрузки */
   isLoading?: boolean;
+  /** Иконка */
   icon: keyof typeof ICON_LIST | null;
+  /** Положение иконки относительно текста */
   iconSide?: 'left' | 'right';
+  /** Кнопка в виде круга (только с иконкой) */
   isCircle?: boolean;
+  /** Стиль кнопки */
   theme?: 'primary' | 'primary-white' | 'secondary' | 'secondary-white' | 'flat' | 'flat-white';
 }
 

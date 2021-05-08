@@ -3,12 +3,15 @@ import React from 'react';
 import LoaderIcon from '../../../../assets/icons/loader.svg';
 import PlusIcon from '../../../../assets/icons/plus.svg';
 
+const Empty: React.FC = () => null;
+
 export const ICON_LIST = {
+  undefined: Empty,
   loader: LoaderIcon,
   plus: PlusIcon,
 };
 
-interface IProps extends React.SVGAttributes<SVGElement> {
+export interface IProps extends React.SVGAttributes<SVGElement> {
   kind?: keyof typeof ICON_LIST;
 }
 
