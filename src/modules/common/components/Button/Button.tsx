@@ -1,11 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
 
-import Icon, { ICON_LIST } from 'src/modules/common/components/SvgIcon';
+import Icon, { ICON_LIST } from '../SvgIcon';
 
 import styles from './Button.module.scss';
 
-interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text?: string;
   isLoading?: boolean;
   icon?: keyof typeof ICON_LIST;

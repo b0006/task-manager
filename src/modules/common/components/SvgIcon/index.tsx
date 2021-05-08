@@ -1,7 +1,7 @@
 import React from 'react';
 
-import LoaderIcon from 'src/assets/icons/loader.svg';
-import PlusIcon from 'src/assets/icons/plus.svg';
+import LoaderIcon from '../../../../assets/icons/loader.svg';
+import PlusIcon from '../../../../assets/icons/plus.svg';
 
 export const ICON_LIST = {
   loader: LoaderIcon,
