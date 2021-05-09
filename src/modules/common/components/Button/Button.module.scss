@@ -41,12 +41,16 @@
   
   &_secondary {
     border: 1px solid $c-primary;
+  }
+  
+  &_secondary, &_flat {
     background-color: $c-white;
     color: $c-primary;
 
     &::before, &:active {
       content: '';
       background-color: transparent;
+      border-radius: 4px;
       transition: background-color 0.25s;
     }
   
@@ -96,7 +100,12 @@
   }
 
   &_circle {
+    overflow: hidden;
     border-radius: 100%;
+
+    &:active {
+      border-radius: 100%;
+    }
   }
 }
 
