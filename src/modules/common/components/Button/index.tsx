@@ -36,32 +36,39 @@ const Button: React.FC<IProps> = ({
     return null;
   }
 
-  const classesSide = {
-    [styles.icon_left]: iconSide === 'left' && text,
-    [styles.icon_right]: iconSide === 'right' && text,
-  };
+  const iconLeftSide = iconSide === 'left';
+  const iconRightSide = iconSide === 'right';
 
-  const svgIcon = icon && <Icon kind={icon} className={cn(styles.icon, classesSide)} />;
+  const classesIcon = cn(styles.icon, {
+    [styles.icon_left]: iconLeftSide && text,
+    [styles.icon_right]: iconRightSide && text,
+    [styles.icon_only]: isCircle,
+    [styles.icon_loading]: isLoading,
+  });
 
-  const svgLoaderIcon = isLoading && (
-    <Icon className={cn(styles.icon, styles.icon_loading, classesSide)} kind="loader" />
-  );
+  const svgIconLoader = <Icon className={classesIcon} kind="loader" />;
+  const svgIcon = icon && <Icon kind={icon} className={classesIcon} />;
+
+  const currentIcon = isLoading ? svgIconLoader : svgIcon;
 
   return (
     <button
       className={cn(styles.button, className, styles[`button_${theme}`], {
-        [styles.button_disabled]: disabled || isLoading,
         [styles.button_circle]: isCircle,
       })}
       type={type}
       disabled={isLoading || disabled}
       {...rest}
     >
-      {iconSide === 'left' && svgLoaderIcon}
-      {iconSide === 'left' && !isLoading && svgIcon}
-      {text && <span>{text}</span>}
-      {iconSide === 'right' && !isLoading && svgIcon}
-      {iconSide === 'right' && svgLoaderIcon}
+      {isCircle ? (
+        svgIcon
+      ) : (
+        <React.Fragment>
+          {iconLeftSide && currentIcon}
+          {text && <span>{text}</span>}
+          {iconRightSide && currentIcon}
+        </React.Fragment>
+      )}
     </button>
   );
 };
