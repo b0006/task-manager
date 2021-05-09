@@ -1,4 +1,4 @@
-@import '../../../../styles/utils';
+@import 'src/styles/utils';
 
 .button {
   position: relative;
@@ -123,6 +123,7 @@
 
   &_only {
     margin-right: 0;
+    margin-left: 0;
   }
 
   &_loading {
