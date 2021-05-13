@@ -8,7 +8,6 @@ export enum ACTIONS {
 
 export interface IState {
   list: any[];
-  portalTargetSelector?: string;
 }
 
 export interface IAction {
