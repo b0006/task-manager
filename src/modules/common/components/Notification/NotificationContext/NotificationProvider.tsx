@@ -1,6 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 
+import NotificationLayout from '../NotificationLayout';
 import NotificationItem from '../NotificationItem';
 import { useNotificationContext, NotificationProvider, ACTIONS } from './NotificationContext';
 
@@ -24,18 +25,15 @@ const Provider: React.FC<IProps> = ({ portalTargetSelector, children }) => {
       {children}
       {portalTarget ? (
         createPortal(
-          <div>
-            <div>notification wrapper</div>
+          <NotificationLayout>
             {state.list.map((item, index) => (
               <NotificationItem key={index} title="title" />
             ))}
-          </div>,
+          </NotificationLayout>,
           portalTarget
         )
       ) : (
-        <div>
-          <div>notification wrapper</div>
-        </div>
+        <NotificationLayout />
       )}
     </NotificationProvider>
   );
