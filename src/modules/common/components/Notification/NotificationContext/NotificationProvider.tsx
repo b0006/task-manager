@@ -23,7 +23,7 @@ const Provider: React.FC<IProps> = ({ portalTargetSelector, children }) => {
     : null;
 
   return (
-    <div>
+    <React.Fragment>
       {children}
       {portalTarget ? (
         createPortal(
@@ -37,7 +37,7 @@ const Provider: React.FC<IProps> = ({ portalTargetSelector, children }) => {
       ) : (
         <NotificationLayout />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 
