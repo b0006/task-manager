@@ -1,0 +1,8 @@
+.notification {
+  position: relative;
+  right: -999px;
+
+  &_showed {
+    right: 0;
+  }
+}

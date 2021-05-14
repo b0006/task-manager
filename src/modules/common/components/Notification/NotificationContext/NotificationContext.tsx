@@ -24,16 +24,24 @@ const initialState: IState = {
 const NotificationStateContext = createContext(initialState);
 const NotificationDispatchContext = createContext<TDispatch>(() => ({}));
 
-const reducer = (state: IState, action: any) => {
+const reducer = (state: IState, action: any): IState => {
   switch (action.type) {
     case ACTIONS.add: {
       return {
         ...state,
+        list: [...state.list, action.payload],
       };
     }
     case ACTIONS.remove: {
       return {
         ...state,
+        list: state.list.filter((n) => n.id !== action.payload.id),
+      };
+    }
+    case ACTIONS.removeAll: {
+      return {
+        ...state,
+        list: [],
       };
     }
     default: {
