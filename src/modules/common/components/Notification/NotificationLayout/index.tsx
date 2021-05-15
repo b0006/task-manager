@@ -10,12 +10,7 @@ interface IProps {
 }
 
 const NotificationLayout: React.FC<IProps> = ({ placement = 'top-right', children }) => {
-  return (
-    <div className={cn(styles.layout, styles[placement])}>
-      <div>NotificationLayout</div>
-      {children}
-    </div>
-  );
+  return <div className={cn(styles.layout, styles[placement])}>{children}</div>;
 };
 
 export default NotificationLayout;

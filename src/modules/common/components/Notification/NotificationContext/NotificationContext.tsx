@@ -4,6 +4,7 @@ export enum ACTIONS {
   update,
   remove,
   removeAll,
+  close,
 }
 
 export interface IState {
@@ -32,6 +33,21 @@ const reducer = (state: IState, action: any): IState => {
         list: [...state.list, action.payload],
       };
     }
+    case ACTIONS.close: {
+      return {
+        ...state,
+        list: state.list.map((n) => {
+          if (n.id !== action.payload.id) {
+            return n;
+          }
+
+          return {
+            ...n,
+            needClose: true,
+          };
+        }),
+      };
+    }
     case ACTIONS.remove: {
       return {
         ...state,
@@ -41,7 +57,10 @@ const reducer = (state: IState, action: any): IState => {
     case ACTIONS.removeAll: {
       return {
         ...state,
-        list: [],
+        list: state.list.map((n) => ({
+          ...n,
+          needClose: true,
+        })),
       };
     }
     default: {

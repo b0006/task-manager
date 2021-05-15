@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 
 import NotificationLayout from '../NotificationLayout';
 import NotificationItem from '../NotificationItem';
-import { useNotificationContext, NotificationProvider, ACTIONS } from './NotificationContext';
-import { TAppearance, TPlacement } from '../types';
+import { useNotificationContext, ACTIONS } from './NotificationContext';
+import { IContent, IOptions } from '../types';
 import { generateUUIDv4 } from '../utils';
 
 const canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const Provider: React.FC<IProps> = ({ portalTargetSelector, children }) => {
-  const [state, dispatch] = useNotificationContext();
+  const [state] = useNotificationContext();
 
   const portalTarget = canUseDOM
     ? portalTargetSelector
@@ -28,8 +28,15 @@ const Provider: React.FC<IProps> = ({ portalTargetSelector, children }) => {
       {portalTarget ? (
         createPortal(
           <NotificationLayout>
-            {state.list.map((item, index) => (
-              <NotificationItem key={index} title="title" />
+            {state.list.map((item) => (
+              <NotificationItem
+                key={item.id}
+                id={item.id}
+                appearance={item.appearance}
+                title={item.content.title}
+                description={item.content.description}
+                needClose={item.needClose}
+              />
             ))}
           </NotificationLayout>,
           portalTarget
@@ -41,23 +48,10 @@ const Provider: React.FC<IProps> = ({ portalTargetSelector, children }) => {
   );
 };
 
-interface IContent {
-  title: string;
-  description: string;
-  onConfirm?: () => void;
-  onCancel?: () => void;
-}
-
-interface IOptions {
-  id?: string;
-  placement?: TPlacement;
-  appearance?: TAppearance;
-}
-
 export const useNotification = () => {
   const [state, dispatch] = useNotificationContext();
 
-  const hasAlready = (id: string) => {
+  const hasAlready = (id: string): boolean => {
     if (!state.list.length) {
       return false;
     }
@@ -82,7 +76,7 @@ export const useNotification = () => {
       return;
     }
 
-    dispatch({ type: ACTIONS.remove, payload: { id } });
+    dispatch({ type: ACTIONS.close, payload: { id } });
   };
 
   const removeAll = (): void => {

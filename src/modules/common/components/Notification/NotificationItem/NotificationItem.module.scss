@@ -1,8 +1,94 @@
-.notification {
-  position: relative;
-  right: -999px;
+@import 'src/styles/utils';
 
-  &_showed {
+@keyframes top-right-show {
+  0% {
+    right: -999px;
+  }
+
+  100% {
     right: 0;
   }
+}
+
+@keyframes top-right-hide {
+  0% {
+    right: 0;
+  }
+
+  100% {
+    right: -999px;
+  }
+}
+
+.notification {
+  animation-name: top-right-show;
+  animation-duration: 0.25s;
+  animation-iteration-count: 1;
+
+  position: relative;
+  transition: right 0.25s;
+  box-shadow: $shadow-default;
+  background-color: $c-white;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 12px;
+  min-width: 100%;
+
+  &_close {
+    animation-name: top-right-hide;
+  }
+
+  @media #{$screen-xm} {
+    min-width: 394px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 28px;
+  color: $c-black;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 24px;
+  color: $c-black;
+  margin-top: 8px;
+}
+
+.icon-wrapper {
+  border-radius: 100%;
+  display: flex;
+  padding: 20px;
+
+  &_success {
+    background-color: $c-green-l;
+
+    .icon {
+      color: $c-green;
+    }
+  }
+
+  &_error {
+    background-color: $c-red-girl;
+
+    .icon {
+      color: $c-red;
+    }
+  }
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
 }

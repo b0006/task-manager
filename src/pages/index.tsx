@@ -6,7 +6,7 @@ import Container from 'src/modules/layout/components/Container';
 export default function Home(): JSX.Element {
   const { addNotification, removeNotification, removeAllNotifications } = useNotification();
 
-  const addRandom = () => {
+  const addRandom = (appearance) => {
     addNotification(
       {
         title: 'Title',
@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
       },
       {
         placement: 'top-right',
-        appearance: 'info',
+        appearance,
       }
     );
   };
@@ -22,13 +22,12 @@ export default function Home(): JSX.Element {
   const addStatic = () => {
     addNotification(
       {
-        title: 'Title',
+        title: 'Static',
         description: 'description',
       },
       {
         id: 'static',
         placement: 'top-right',
-        appearance: 'info',
       }
     );
   };
@@ -44,8 +43,11 @@ export default function Home(): JSX.Element {
   return (
     <Container>
       <h1>Home page</h1>
-      <button type="button" onClick={addRandom}>
-        ADD
+      <button type="button" onClick={() => addRandom('success')}>
+        ADD success
+      </button>
+      <button type="button" onClick={() => addRandom('error')}>
+        ADD error
       </button>
       <div>
         <button type="button" onClick={addStatic}>
