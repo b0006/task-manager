@@ -64,6 +64,14 @@
   line-height: 24px;
   color: $c-black;
   margin-top: 8px;
+
+  &_no-title {
+    margin-top: 0;
+  }
+}
+
+.buttons {
+  margin-top: 16px;
 }
 
 .icon-wrapper {
@@ -76,6 +84,14 @@
 
     .icon {
       color: $c-green;
+    }
+  }
+
+  &_info {
+    background-color: $c-primary-disabled;
+
+    .icon {
+      color: $c-primary;
     }
   }
 

@@ -49,6 +49,9 @@ export default function Home(): JSX.Element {
       <button type="button" onClick={() => addRandom('error')}>
         ADD error
       </button>
+      <button type="button" onClick={() => addRandom('info')}>
+        ADD info
+      </button>
       <div>
         <button type="button" onClick={addStatic}>
           ADD static

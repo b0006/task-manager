@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
+import Button from 'src/modules/common/components/Button';
 import SvgIcon, { ICON_LIST } from 'src/modules/common/components/SvgIcon';
 
 import { INotificationState } from '../types';
@@ -27,6 +28,10 @@ const NotificationItem: React.FC<INotificationState> = ({
       return 'cross';
     }
 
+    if (appearance === 'info') {
+      return 'info';
+    }
+
     return 'checked';
   };
 
@@ -45,13 +50,19 @@ const NotificationItem: React.FC<INotificationState> = ({
     >
       <div className={styles.inner}>
         <div className={styles.content}>
-          <div className={styles.title}>{title}</div>
-          {description && <div className={styles.description}>{description}</div>}
+          {title && <div className={styles.title}>{title}</div>}
+          {description && (
+            <div
+              className={cn(styles.description, {
+                [styles['description_no-title']]: !title,
+              })}
+            >
+              {description}
+            </div>
+          )}
           {showCloseButton && (
-            <div>
-              <button type="button" onClick={onClose}>
-                Close
-              </button>
+            <div className={styles.buttons}>
+              <Button text="Close" theme="secondary" type="button" onClick={onClose} />
             </div>
           )}
         </div>

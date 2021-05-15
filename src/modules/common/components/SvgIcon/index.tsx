@@ -4,6 +4,7 @@ import LoaderIcon from '../../../../assets/icons/loader.svg';
 import PlusIcon from '../../../../assets/icons/plus.svg';
 import CrossIcon from '../../../../assets/icons/cross.svg';
 import CheckedIcon from '../../../../assets/icons/checked.svg';
+import InfoIcon from '../../../../assets/icons/info.svg';
 
 const Empty: React.FC = () => null;
 
@@ -13,6 +14,7 @@ export const ICON_LIST = {
   plus: PlusIcon,
   cross: CrossIcon,
   checked: CheckedIcon,
+  info: InfoIcon,
 };
 
 export interface IProps extends React.SVGAttributes<SVGElement> {
