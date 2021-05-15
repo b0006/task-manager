@@ -1,8 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
-import Button from 'src/modules/common/components/Button';
-import SvgIcon, { ICON_LIST } from 'src/modules/common/components/SvgIcon';
+import Button from '../../Button';
+import SvgIcon, { ICON_LIST } from '../../SvgIcon';
 
 import { INotificationState } from '../types';
 import { useNotificationContext, ACTIONS } from '../NotificationContext/NotificationContext';
