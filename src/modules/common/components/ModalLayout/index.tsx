@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import ClientOnlyPortal from './ClientOnlyPortal';
@@ -17,7 +17,19 @@ const ModalLayout: React.FC<IProps> = ({ portalTargetSelector, overlayClickClose
   const [needClose, setNeedClose] = useState(false);
   const innerRef = useRef<HTMLDivElement>(null);
 
-  if (!isVisible) {
+  const [innerIsVisible, setInnerIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (isVisible) {
+      setInnerIsVisible(true);
+    }
+
+    if (innerIsVisible && !isVisible) {
+      setNeedClose(true);
+    }
+  }, [innerIsVisible, isVisible]);
+
+  if (!innerIsVisible) {
     return null;
   }
 
@@ -29,6 +41,7 @@ const ModalLayout: React.FC<IProps> = ({ portalTargetSelector, overlayClickClose
     if (needClose) {
       onClose();
       setNeedClose(false);
+      setInnerIsVisible(false);
     }
   };
 
