@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
-import Notification, { IProps } from './index';
+import ModalLayout from './index';
+
+export interface IProps {
+  portalTargetSelector: string;
+  overlayClickClose?: boolean;
+  onClose?: () => void;
+}
 
 const Page: React.FC<IProps> = (props) => {
   const [open, setOpen] = useState(false);
@@ -9,7 +15,9 @@ const Page: React.FC<IProps> = (props) => {
       <button type="button" onClick={() => setOpen(!open)}>
         {open ? 'Close' : 'Open'}
       </button>
-      <Notification {...props} isShowed={open} />
+      <ModalLayout isVisible={open} onClose={() => setOpen(false)} {...props}>
+        MODAL CONTENT
+      </ModalLayout>
       <div id="modal" />
     </div>
   );
