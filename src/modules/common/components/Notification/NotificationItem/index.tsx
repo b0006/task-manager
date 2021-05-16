@@ -4,10 +4,16 @@ import cn from 'classnames';
 import Button from '../../Button';
 import SvgIcon, { ICON_LIST } from '../../SvgIcon';
 
-import { INotificationState } from '../types';
+import { TAppearance, INotificationState } from '../types';
 import { useNotificationContext, ACTIONS } from '../NotificationContext/NotificationContext';
 
 import styles from './NotificationItem.module.scss';
+
+const ICON_KIND_DATA: Record<TAppearance, keyof typeof ICON_LIST> = {
+  success: 'checked',
+  error: 'cross',
+  info: 'info',
+};
 
 const NotificationItem: React.FC<INotificationState> = ({
   title,
@@ -21,18 +27,6 @@ const NotificationItem: React.FC<INotificationState> = ({
 
   const onClose = (): void => {
     dispatch({ type: ACTIONS.close, payload: { id } });
-  };
-
-  const getIconKind = (): keyof typeof ICON_LIST => {
-    if (appearance === 'error') {
-      return 'cross';
-    }
-
-    if (appearance === 'info') {
-      return 'info';
-    }
-
-    return 'checked';
   };
 
   const onCloseEnd = (): void => {
@@ -68,7 +62,7 @@ const NotificationItem: React.FC<INotificationState> = ({
         </div>
         <div>
           <div className={cn(styles['icon-wrapper'], styles[`icon-wrapper_${appearance}`])}>
-            <SvgIcon kind={getIconKind()} className={styles.icon} />
+            <SvgIcon kind={ICON_KIND_DATA[appearance]} className={styles.icon} />
           </div>
         </div>
       </div>
