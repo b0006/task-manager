@@ -17,45 +17,31 @@ body {
 }
 
 h1 {
-  font-size: 1.5rem;
-
-  @media #{$screen-md} {
-    font-size: 2.625rem;
-  }
+  font-size: 56px;
+  line-height: 64px;
 }
 
 h2 {
-  font-size: 1.5rem;
-
-  @media #{$screen-md} {
-    font-size: 2.25rem;
-  }
+  font-size: 48px;
+  line-height: 56px;
 }
 
 h3 {
-  font-size: 1.125rem;
-
-  @media #{$screen-md} {
-    font-size: 1.625rem;
-  }
+  font-size: 40px;
+  line-height: 48px;
 }
 
 h4 {
-  font-size: 1.125rem;
-
-  @media #{$screen-md} {
-    font-size: 1.25rem;
-  }
+  font-size: 32px;
+  line-height: 40px;
 }
 
 h5 {
-  font-size: 1rem;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 h6 {
-  font-size: 1rem;
-
-  @media #{$screen-md} {
-    font-size: 0.875rem;
-  }
+  font-size: 20px;
+  line-height: 28px;
 }

@@ -11,9 +11,23 @@ export interface IProps {
   onClose: () => void;
   portalTargetSelector?: string;
   overlayClickClose?: boolean;
+  showCloseButton?: boolean;
+  classNameOverlay?: string;
+  classNameInner?: string;
+  classNameContent?: string;
 }
 
-const ModalLayout: React.FC<IProps> = ({ portalTargetSelector, overlayClickClose, children, onClose, isVisible }) => {
+const ModalLayout: React.FC<IProps> = ({
+  portalTargetSelector,
+  overlayClickClose,
+  children,
+  onClose,
+  isVisible,
+  showCloseButton = true,
+  classNameOverlay,
+  classNameContent,
+  classNameInner,
+}) => {
   const [needClose, setNeedClose] = useState(false);
   const innerRef = useRef<HTMLDivElement>(null);
 
@@ -62,7 +76,7 @@ const ModalLayout: React.FC<IProps> = ({ portalTargetSelector, overlayClickClose
   return (
     <ClientOnlyPortal selector={portalTargetSelector}>
       <div
-        className={cn(styles.overlay, {
+        className={cn(styles.overlay, classNameOverlay, {
           [styles.overlay_hide]: needClose,
         })}
         tabIndex={0}
@@ -73,14 +87,16 @@ const ModalLayout: React.FC<IProps> = ({ portalTargetSelector, overlayClickClose
       >
         <div
           ref={innerRef}
-          className={cn(styles.inner, {
+          className={cn(styles.inner, classNameInner, {
             [styles.inner_hide]: needClose,
           })}
         >
-          <div className={styles.content}>
-            <button className={styles['button-close']} type="button" onClick={onNeedClose}>
-              <SvgIcon kind="cross" className={styles.icon} />
-            </button>
+          <div className={cn(styles.content, classNameContent)}>
+            {showCloseButton && (
+              <button className={styles['button-close']} type="button" onClick={onNeedClose}>
+                <SvgIcon kind="cross" className={styles.icon} />
+              </button>
+            )}
             {children}
           </div>
         </div>
