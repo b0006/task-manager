@@ -12,5 +12,4 @@ const Template: Story<IProps> = (args) => <StoryPage {...args} />;
 export const Layout = Template.bind({});
 Layout.args = {
   overlayClickClose: false,
-  portalTargetSelector: '#modal',
 };

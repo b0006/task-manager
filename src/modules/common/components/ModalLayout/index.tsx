@@ -9,7 +9,7 @@ import styles from './ModalLayout.module.scss';
 export interface IProps {
   isVisible: boolean;
   onClose: () => void;
-  portalTargetSelector: string;
+  portalTargetSelector?: string;
   overlayClickClose?: boolean;
 }
 

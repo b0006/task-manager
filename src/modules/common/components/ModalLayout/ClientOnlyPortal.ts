@@ -2,15 +2,15 @@ import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 interface IProps {
-  selector: string;
+  selector?: string;
 }
 
 const ClientOnlyPortal: React.FC<IProps> = ({ children, selector }) => {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    ref.current = document.querySelector(selector);
+    ref.current = selector ? document.querySelector(selector) : document.body;
     setMounted(true);
   }, [selector]);
 

@@ -18,7 +18,6 @@ const Page: React.FC<IProps> = (props) => {
       <ModalLayout isVisible={open} onClose={() => setOpen(false)} {...props}>
         MODAL CONTENT
       </ModalLayout>
-      <div id="modal" />
     </div>
   );
 };
