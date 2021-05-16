@@ -94,6 +94,14 @@
     }
   }
 
+  &_warning {
+    background-color: $c-star-l;
+
+    .icon {
+      color: $c-star;
+    }
+  }
+
   &_error {
     background-color: $c-red-girl;
 

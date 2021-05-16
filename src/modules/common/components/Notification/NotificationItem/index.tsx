@@ -13,6 +13,7 @@ const ICON_KIND_DATA: Record<TAppearance, keyof typeof ICON_LIST> = {
   success: 'checked',
   error: 'cross',
   info: 'info',
+  warning: 'exclamationTriangle',
 };
 
 const NotificationItem: React.FC<INotificationState> = ({

@@ -46,6 +46,7 @@ const StoryPage: React.FC = () => {
       <Button text="ADD success" type="button" onClick={() => addRandom('success')} />
       <Button style={{ marginTop: '12px' }} text="ADD error" type="button" onClick={() => addRandom('error')} />
       <Button style={{ marginTop: '12px' }} text="ADD info" type="button" onClick={() => addRandom('info')} />
+      <Button style={{ marginTop: '12px' }} text="ADD warning" type="button" onClick={() => addRandom('warning')} />
       <div style={{ marginTop: '12px' }}>
         <Button text="ADD static" type="button" onClick={addStatic} />
         <Button style={{ marginTop: '12px' }} text="REMOVE static" type="button" onClick={removeStatic} />

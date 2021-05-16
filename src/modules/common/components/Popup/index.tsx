@@ -12,7 +12,7 @@ const ICON_KIND_DATA: Record<TAppearance, keyof typeof ICON_LIST> = {
   success: 'checked',
   error: 'cross',
   info: 'info',
-  warning: 'info',
+  warning: 'exclamationTriangle',
 };
 
 export interface IHandler {
