@@ -5,7 +5,7 @@ import SvgIcon from '../SvgIcon';
 
 import styles from './Checkbox.module.scss';
 
-export interface IProps {
+export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   className?: string;
   isError?: boolean;
@@ -13,7 +13,7 @@ export interface IProps {
 }
 
 const Checkbox = React.forwardRef((props: IProps, ref?: React.LegacyRef<HTMLInputElement>) => {
-  const { label, className, isError, disabled } = props;
+  const { label, className, isError, disabled, ...rest } = props;
 
   return (
     <label
@@ -22,7 +22,7 @@ const Checkbox = React.forwardRef((props: IProps, ref?: React.LegacyRef<HTMLInpu
         [styles.wrapper_disabled]: disabled,
       })}
     >
-      <input disabled={disabled} ref={ref} type="checkbox" className={styles.input} />
+      <input disabled={disabled} ref={ref} type="checkbox" className={styles.input} {...rest} />
       <div className={styles.checkmark}>
         <SvgIcon kind="checked" className={styles.icon} />
       </div>
