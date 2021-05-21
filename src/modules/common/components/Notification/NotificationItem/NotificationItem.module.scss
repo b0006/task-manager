@@ -13,10 +13,28 @@
 @keyframes top-right-hide {
   0% {
     right: 0;
+    max-height: 1000px;
+  }
+
+  20% {
+    max-height: 800px;
+  }
+
+  40% {
+    max-height: 600px;
+  }
+
+  60% {
+    max-height: 400px;
+  }
+
+  80% {
+    max-height: 200px;
   }
 
   100% {
     right: -999px;
+    max-height: 0;
   }
 }
 
