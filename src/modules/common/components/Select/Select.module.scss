@@ -1,0 +1,53 @@
+@import 'src/styles/utils';
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-self: center;
+  box-shadow: $shadow-default;
+  background-color: $c-white;
+  border-radius: 4px;
+  min-height: 56px;
+}
+
+.label {
+  position: absolute;
+  top: -10px;
+}
+
+.preview {
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+}
+
+.arrow {
+  width: 14px;
+  height: 14px;
+  transform: rotate(0deg);
+  transition: transform 0.25s;
+  color: $c-gray;
+
+  &_up {
+    transform: rotate(180deg);
+  }
+}
+
+.list-wrapper {
+  position: absolute;
+  top: 100%;
+  background-color: $c-white;
+  box-shadow: $shadow-default;
+  width: 100%;
+  max-height: 500px;
+  margin-top: 4px;
+  
+  &_overflow {
+    overflow-y: auto;
+  }
+}

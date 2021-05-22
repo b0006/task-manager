@@ -12,6 +12,23 @@
   &::after {
     box-sizing: border-box;
   }
+
+  /* Works on Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: $c-primary transparent;
+
+  /* Works on Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $c-primary;
+  }
 }
 
 body {
