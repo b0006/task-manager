@@ -5,11 +5,12 @@ import SlideDownUp from '../SlideDownUp';
 import SvgIcon from '../SvgIcon';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 
+import SelectOption from './SelectOption';
 import styles from './Select.module.scss';
 
-type TOptionValue = string | number;
+export type TOptionValue = string | number | null;
 
-interface IOption {
+export interface IOption {
   label: string;
   value: TOptionValue;
 }
@@ -19,12 +20,28 @@ export interface IProps {
   options: IOption[];
   wrapperStyle?: React.CSSProperties;
   isOutsideClickClose?: boolean;
+  withEmptyOption?: boolean;
+  emptyOptionLabel?: string;
+  value?: TOptionValue;
+  defaultValue?: TOptionValue;
+  onChange?: (value: IOption | null) => void;
 }
 
-const Select: React.FC<IProps> = ({ label, wrapperStyle, isOutsideClickClose = true, options = [] }) => {
+const Select: React.FC<IProps> = ({
+  label,
+  wrapperStyle,
+  isOutsideClickClose = true,
+  value,
+  onChange,
+  withEmptyOption,
+  emptyOptionLabel = '',
+  options = [],
+}) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const [activeOption, setActiveOption] = useState<IOption | null>(null);
+  const [activeOption, setActiveOption] = useState<IOption | null>(
+    options.filter((option) => option.value === value)[0]
+  );
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOverflow, setIsOverflow] = useState(false);
@@ -40,16 +57,23 @@ const Select: React.FC<IProps> = ({ label, wrapperStyle, isOutsideClickClose = t
     }
   };
 
+  const onCloseList = (): void => {
+    setIsOverflow(false);
+    setIsOpen(false);
+  };
+
   const onClickOption = (value: TOptionValue) => (): void => {
-    const [findOption] = options.filter((option) => option.value === value);
+    const [findOption = null] = options.filter((option) => option.value === value);
     setActiveOption(findOption);
-    onToggleList();
+    onCloseList();
+    if (onChange) {
+      onChange(findOption);
+    }
   };
 
   const onOutSideClick = (): void => {
     if (isOutsideClickClose) {
-      setIsOverflow(false);
-      setIsOpen(false);
+      onCloseList();
     }
   };
 
@@ -64,15 +88,24 @@ const Select: React.FC<IProps> = ({ label, wrapperStyle, isOutsideClickClose = t
       ref={contentRef}
     >
       <span className={styles.label}>{label}</span>
-      <button className={styles.preview} onClick={onToggleList}>
+      <div className={styles.preview}>
         <span className={styles['active-option']}>{activeOption && activeOption.label}</span>
-        <SvgIcon
-          kind="chevronDown"
-          className={cn(styles.arrow, {
-            [styles.arrow_up]: isOpen,
-          })}
-        />
-      </button>
+        <div className={styles.icons}>
+          {activeOption && (
+            <button className={cn(styles.button, styles['button-remove'])} onClick={onClickOption(null)} type="button">
+              <SvgIcon kind="cross" className={styles.icon} />
+            </button>
+          )}
+          <button className={styles.button} onClick={onToggleList} type="button">
+            <SvgIcon
+              kind="chevronDown"
+              className={cn(styles.icon, styles.arrow, {
+                [styles.arrow_up]: isOpen,
+              })}
+            />
+          </button>
+        </div>
+      </div>
       <SlideDownUp
         onAnimationOpenEnd={onAnimationOpenEnd}
         className={cn(styles['list-wrapper'], {
@@ -81,23 +114,22 @@ const Select: React.FC<IProps> = ({ label, wrapperStyle, isOutsideClickClose = t
         isOpen={isOpen}
       >
         <ul className={styles.list}>
+          {withEmptyOption && (
+            <SelectOption
+              isOpen={isOpen}
+              activeOption={null}
+              option={{ label: emptyOptionLabel, value: null }}
+              onChange={onClickOption(null)}
+            />
+          )}
           {options.map((option) => (
-            <li
+            <SelectOption
               key={option.value}
-              className={cn(styles['list-item'], {
-                [styles['list-item_active']]: option.value === activeOption?.value,
-              })}
-            >
-              <button
-                tabIndex={isOpen ? 0 : -1}
-                type="button"
-                onClick={onClickOption(option.value)}
-                className={styles['list-item-button']}
-              >
-                {option.label}
-              </button>
-              {option.value === activeOption?.value && <SvgIcon kind="checked" className={styles['icon-active']} />}
-            </li>
+              option={option}
+              activeOption={activeOption}
+              isOpen={isOpen}
+              onChange={onClickOption(option.value)}
+            />
           ))}
         </ul>
       </SlideDownUp>

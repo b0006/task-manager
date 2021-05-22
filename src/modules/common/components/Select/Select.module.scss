@@ -28,7 +28,12 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 16px;
+  padding: 0 16px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
 }
 
 .active-option {
@@ -36,12 +41,32 @@
   line-height: 24px;
 }
 
-.arrow {
+.button {
+  padding: 12px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.25s;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: $c-gray-l;
+  }
+}
+
+.button-remove {
+  margin-right: 12px;
+}
+
+.icon {
   width: 14px;
   height: 14px;
+  color: $c-gray;
+}
+
+.arrow {
   transform: rotate(0deg);
   transition: transform 0.25s;
-  color: $c-gray;
 
   &_up {
     transform: rotate(180deg);
@@ -64,38 +89,38 @@
   }
 }
 
-.list-item {
-  position: relative;
-  list-style-type: none;
-  background-color: transparent;
-  transition: background-color 0.25s;
+// .list-item {
+//   position: relative;
+//   list-style-type: none;
+//   background-color: transparent;
+//   transition: background-color 0.25s;
 
-  &_active {
-    background-color: $c-primary-disabled;
-  }
+//   &_active {
+//     background-color: $c-primary-disabled;
+//   }
 
-  &:hover {
-    background-color: $c-gray-l;
-  }
-}
+//   &:hover {
+//     background-color: $c-gray-l;
+//   }
+// }
 
-.list-item-button {
-  border: none;
-  background-color: transparent;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  padding: 5px 16px;
-  font-size: 16px;
-  line-height: 24px;
-}
+// .list-item-button {
+//   border: none;
+//   background-color: transparent;
+//   width: 100%;
+//   text-align: left;
+//   cursor: pointer;
+//   padding: 5px 16px;
+//   font-size: 16px;
+//   line-height: 24px;
+// }
 
-.icon-active {
-  width: 14px;
-  height: 14px;
-  color: $c-primary;
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+// .icon-active {
+//   width: 14px;
+//   height: 14px;
+//   color: $c-primary;
+//   position: absolute;
+//   right: 16px;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
