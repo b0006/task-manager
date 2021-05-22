@@ -49,7 +49,7 @@ const Input = React.forwardRef((props: IProps, ref?: React.LegacyRef<HTMLInputEl
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={cn(styles.wrapper, className)}>
       <label className={styles.inner}>
         {label && (
           <span
@@ -62,7 +62,7 @@ const Input = React.forwardRef((props: IProps, ref?: React.LegacyRef<HTMLInputEl
           </span>
         )}
         <input
-          className={cn(styles.input, className, {
+          className={cn(styles.input, {
             [styles.input_error]: errorText && !disabled,
             [styles['input_without-label']]: !label,
             [styles.input_success]: isSuccess && !disabled,

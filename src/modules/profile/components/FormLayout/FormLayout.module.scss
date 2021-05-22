@@ -1,0 +1,8 @@
+@import '@/styles/utils';
+
+.wrapper {
+  box-shadow: $shadow-default;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 32px;
+}
