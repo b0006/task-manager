@@ -42,7 +42,8 @@
 }
 
 .button {
-  padding: 12px;
+  padding: 10px;
+  display: flex;
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -55,7 +56,7 @@
 }
 
 .button-remove {
-  margin-right: 12px;
+  margin-right: 6px;
 }
 
 .icon {

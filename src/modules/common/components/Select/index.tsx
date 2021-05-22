@@ -38,6 +38,7 @@ const Select: React.FC<IProps> = ({
   options = [],
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
 
   const [activeOption, setActiveOption] = useState<IOption | null>(
     options.filter((option) => option.value === value)[0]
@@ -79,6 +80,12 @@ const Select: React.FC<IProps> = ({
 
   useOnClickOutside(contentRef, onOutSideClick);
 
+  const onClickPreview = (event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>): void => {
+    if (!isOpen && !buttonsRef.current?.contains(event.target as Node)) {
+      setIsOpen(true);
+    }
+  };
+
   return (
     <div
       style={wrapperStyle}
@@ -88,9 +95,9 @@ const Select: React.FC<IProps> = ({
       ref={contentRef}
     >
       <span className={styles.label}>{label}</span>
-      <div className={styles.preview}>
+      <div className={styles.preview} role="button" tabIndex={0} onClick={onClickPreview} onKeyPress={onClickPreview}>
         <span className={styles['active-option']}>{activeOption && activeOption.label}</span>
-        <div className={styles.icons}>
+        <div className={styles.icons} ref={buttonsRef}>
           {activeOption && (
             <button className={cn(styles.button, styles['button-remove'])} onClick={onClickOption(null)} type="button">
               <SvgIcon kind="cross" className={styles.icon} />
