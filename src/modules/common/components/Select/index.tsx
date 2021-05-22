@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import cn from 'classnames';
 
 import SlideDownUp from '../SlideDownUp';
 import SvgIcon from '../SvgIcon';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 import styles from './Select.module.scss';
 
@@ -17,9 +18,12 @@ export interface IProps {
   label?: string;
   options: IOption[];
   wrapperStyle?: React.CSSProperties;
+  isOutsideClickClose?: boolean;
 }
 
-const Select: React.FC<IProps> = ({ label, wrapperStyle, options = [] }) => {
+const Select: React.FC<IProps> = ({ label, wrapperStyle, isOutsideClickClose = true, options = [] }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const [activeOption, setActiveOption] = useState<IOption | null>(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -42,12 +46,22 @@ const Select: React.FC<IProps> = ({ label, wrapperStyle, options = [] }) => {
     onToggleList();
   };
 
+  const onOutSideClick = (): void => {
+    if (isOutsideClickClose) {
+      setIsOverflow(false);
+      setIsOpen(false);
+    }
+  };
+
+  useOnClickOutside(contentRef, onOutSideClick);
+
   return (
     <div
       style={wrapperStyle}
       className={cn(styles.wrapper, {
         [styles.wrapper_open]: isOpen,
       })}
+      ref={contentRef}
     >
       <span className={styles.label}>{label}</span>
       <button className={styles.preview} onClick={onToggleList}>
