@@ -1,7 +1,7 @@
 import type { AppProps /*, AppContext */ } from 'next/app';
 import Head from 'next/head';
 
-import { Provider as NotificationProvider } from 'src/modules/common/components/Notification';
+import { Provider as NotificationProvider } from 'src/modules/common/ui-kit/Notification';
 import Layout from 'src/modules/layout/components/Layout';
 import 'src/styles/index.scss';
 

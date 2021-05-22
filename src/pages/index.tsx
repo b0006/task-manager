@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useNotification } from 'src/modules/common/components/Notification';
+import { useNotification } from 'src/modules/common/ui-kit/Notification';
 import Container from 'src/modules/layout/components/Container';
 
 export default function Home(): JSX.Element {
