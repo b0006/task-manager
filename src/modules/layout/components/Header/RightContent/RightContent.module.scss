@@ -1,0 +1,11 @@
+@import '@/styles/utils';
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.login-button {
+  margin-right: 6px;
+}
