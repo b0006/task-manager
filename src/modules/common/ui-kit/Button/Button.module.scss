@@ -12,6 +12,7 @@
   padding: 12px;
   display: flex;
   align-items: center;
+  text-decoration: none;
 
   &_primary {
     color: $c-white;
@@ -132,4 +133,8 @@
     animation-duration: 2s;
     animation-timing-function: linear;
   }
+}
+
+.link {
+  text-decoration: none;
 }

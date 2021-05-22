@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import cn from 'classnames';
 
 import Icon, { ICON_LIST } from '../SvgIcon';
@@ -18,59 +18,78 @@ export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isCircle?: boolean;
   /** Стиль кнопки */
   theme?: 'primary' | 'primary-white' | 'secondary' | 'secondary-white' | 'flat' | 'flat-white';
+  /** Кнопка в виде ссылки */
+  href?: string;
 }
 
-const Button: React.FC<IProps> = ({
-  text,
-  className,
-  disabled,
-  isLoading,
-  isCircle,
-  icon,
-  iconSide = 'left',
-  theme = 'primary',
-  type = 'button',
-  ...rest
-}) => {
-  if (typeof icon === 'undefined' && typeof text === 'undefined') {
-    return null;
+const Button = forwardRef<HTMLButtonElement, IProps>(
+  (
+    {
+      text,
+      className,
+      disabled,
+      isLoading,
+      isCircle,
+      icon,
+      iconSide = 'left',
+      theme = 'primary',
+      type = 'button',
+      href,
+      ...rest
+    },
+    ref
+  ) => {
+    if (typeof icon === 'undefined' && typeof text === 'undefined') {
+      return null;
+    }
+
+    const iconLeftSide = iconSide === 'left';
+    const iconRightSide = iconSide === 'right';
+
+    const classesIcon = cn(styles.icon, {
+      [styles.icon_left]: iconLeftSide && text,
+      [styles.icon_right]: iconRightSide && text,
+      [styles.icon_only]: isCircle,
+      [styles.icon_loading]: isLoading,
+    });
+
+    const svgIconLoader = <Icon className={classesIcon} kind="loader" />;
+    const svgIcon = icon && <Icon kind={icon} className={classesIcon} />;
+
+    const currentIcon = isLoading ? svgIconLoader : svgIcon;
+
+    const button = (
+      <button
+        className={cn(styles.button, className, styles[`button_${theme}`], {
+          [styles.button_circle]: isCircle,
+        })}
+        type={type}
+        disabled={isLoading || disabled}
+        ref={ref}
+        {...rest}
+      >
+        {isCircle ? (
+          svgIcon
+        ) : (
+          <React.Fragment>
+            {iconLeftSide && currentIcon}
+            {text && <span>{text}</span>}
+            {iconRightSide && currentIcon}
+          </React.Fragment>
+        )}
+      </button>
+    );
+
+    return href ? (
+      <a className={styles.link} href={href}>
+        {button}
+      </a>
+    ) : (
+      button
+    );
   }
+);
 
-  const iconLeftSide = iconSide === 'left';
-  const iconRightSide = iconSide === 'right';
-
-  const classesIcon = cn(styles.icon, {
-    [styles.icon_left]: iconLeftSide && text,
-    [styles.icon_right]: iconRightSide && text,
-    [styles.icon_only]: isCircle,
-    [styles.icon_loading]: isLoading,
-  });
-
-  const svgIconLoader = <Icon className={classesIcon} kind="loader" />;
-  const svgIcon = icon && <Icon kind={icon} className={classesIcon} />;
-
-  const currentIcon = isLoading ? svgIconLoader : svgIcon;
-
-  return (
-    <button
-      className={cn(styles.button, className, styles[`button_${theme}`], {
-        [styles.button_circle]: isCircle,
-      })}
-      type={type}
-      disabled={isLoading || disabled}
-      {...rest}
-    >
-      {isCircle ? (
-        svgIcon
-      ) : (
-        <React.Fragment>
-          {iconLeftSide && currentIcon}
-          {text && <span>{text}</span>}
-          {iconRightSide && currentIcon}
-        </React.Fragment>
-      )}
-    </button>
-  );
-};
+Button.displayName = 'Button';
 
 export default Button;
