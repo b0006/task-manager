@@ -14,7 +14,7 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Label',
   wrapperStyle: {
-    width: '500px',
+    maxWidth: '500px',
   },
   options: [
     { label: 'Option 1', value: '1' },

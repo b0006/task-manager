@@ -6,17 +6,22 @@ import SvgIcon from '../SvgIcon';
 
 import styles from './Select.module.scss';
 
+type TOptionValue = string | number;
+
+interface IOption {
+  label: string;
+  value: TOptionValue;
+}
 export interface IProps {
   className?: string;
   label?: string;
-  options: Array<{
-    label: string;
-    value: string | number;
-  }>;
+  options: IOption[];
   wrapperStyle?: React.CSSProperties;
 }
 
 const Select: React.FC<IProps> = ({ label, wrapperStyle, options = [] }) => {
+  const [activeOption, setActiveOption] = useState<IOption | null>(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOverflow, setIsOverflow] = useState(false);
 
@@ -31,11 +36,22 @@ const Select: React.FC<IProps> = ({ label, wrapperStyle, options = [] }) => {
     }
   };
 
+  const onClickOption = (value: TOptionValue) => (): void => {
+    const [findOption] = options.filter((option) => option.value === value);
+    setActiveOption(findOption);
+    onToggleList();
+  };
+
   return (
-    <div style={wrapperStyle} className={styles.wrapper}>
+    <div
+      style={wrapperStyle}
+      className={cn(styles.wrapper, {
+        [styles.wrapper_open]: isOpen,
+      })}
+    >
       <span className={styles.label}>{label}</span>
       <button className={styles.preview} onClick={onToggleList}>
-        <span>current option</span>
+        <span className={styles['active-option']}>{activeOption && activeOption.label}</span>
         <SvgIcon
           kind="chevronDown"
           className={cn(styles.arrow, {
@@ -50,9 +66,24 @@ const Select: React.FC<IProps> = ({ label, wrapperStyle, options = [] }) => {
         })}
         isOpen={isOpen}
       >
-        <ul>
+        <ul className={styles.list}>
           {options.map((option) => (
-            <li key={option.value}>{option.label}</li>
+            <li
+              key={option.value}
+              className={cn(styles['list-item'], {
+                [styles['list-item_active']]: option.value === activeOption?.value,
+              })}
+            >
+              <button
+                tabIndex={isOpen ? 0 : -1}
+                type="button"
+                onClick={onClickOption(option.value)}
+                className={styles['list-item-button']}
+              >
+                {option.label}
+              </button>
+              {option.value === activeOption?.value && <SvgIcon kind="checked" className={styles['icon-active']} />}
+            </li>
           ))}
         </ul>
       </SlideDownUp>
