@@ -1,4 +1,4 @@
-# Task manager (Trello copy)
+# Task manager (Trello anolog)
 
 UI kit: [Browk UI KIT](https://www.figma.com/community/file/817436609226882468)
 
