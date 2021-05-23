@@ -7,6 +7,8 @@ import CheckedIcon from '../../../../assets/icons/checked.svg';
 import InfoIcon from '../../../../assets/icons/info.svg';
 import ExclamationTriangleIcon from '../../../../assets/icons/exclamationTriangle.svg';
 import ChevronDownIcon from '../../../../assets/icons/chevronDown.svg';
+import VkIcon from '../../../../assets/icons/vk.svg';
+import GoogleIcon from '../../../../assets/icons/google.svg';
 
 const Empty: React.FC = () => null;
 
@@ -19,6 +21,8 @@ export const ICON_LIST = {
   info: InfoIcon,
   exclamationTriangle: ExclamationTriangleIcon,
   chevronDown: ChevronDownIcon,
+  vk: VkIcon,
+  google: GoogleIcon,
 };
 
 export interface IProps extends React.SVGAttributes<SVGElement> {
