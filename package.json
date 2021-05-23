@@ -16,7 +16,8 @@
     "express": "^4.17.1",
     "next": "10.0.3",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-hook-form": "^7.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
