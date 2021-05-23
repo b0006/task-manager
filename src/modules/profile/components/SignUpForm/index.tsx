@@ -30,65 +30,65 @@ const SignUpForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1 className={styles.title}>Sign up for your account</h1>
+      <h1 className={styles.title}>Зарегистрируйтесь для своей учетной записи</h1>
       <Input
         className={styles.input}
         label="Email"
         placeholder="email@mail.ru"
         errorText={errors.email?.message}
         {...register('email', {
-          required: 'Input your email',
+          required: 'Введите email',
           pattern: {
             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: 'Incorrect email',
+            message: 'Некорректный email',
           },
         })}
       />
       <Input
         className={styles.input}
-        label="Login"
+        label="Логин"
         placeholder="login"
         errorText={errors.login?.message}
         {...register('login', {
-          required: 'Input your login',
+          required: 'Введите логин',
           minLength: {
             value: 3,
-            message: 'So small',
+            message: 'Слишком маленький',
           },
           maxLength: {
             value: 48,
-            message: 'So big',
+            message: 'Слишком большой',
           },
         })}
       />
       <Input
         className={styles.input}
         type="password"
-        label="Password"
+        label="Пароль"
         errorText={errors.password?.message}
         {...register('password', {
-          required: 'Input your password',
+          required: 'Введите пароль',
           minLength: {
             value: 8,
-            message: 'So small',
+            message: 'Слишком маленький',
           },
           maxLength: {
             value: 200,
-            message: 'So big',
+            message: 'Слишком большой',
           },
         })}
       />
       <Input
         className={styles.input}
         type="password"
-        label="Confirm password"
+        label="Подтверждение пароля"
         errorText={errors.confirmPassword?.message}
         {...register('confirmPassword', {
-          required: 'Confirm your password',
-          validate: (value) => value === password.current || 'The passwords do not match',
+          required: 'Подтвердите пароль',
+          validate: (value) => value === password.current || 'Пароли не совпадают',
         })}
       />
-      <Button className={styles.button} type="submit" text="Continue" theme="primary" />
+      <Button className={styles.button} type="submit" text="Продолжить" theme="primary" />
     </form>
   );
 };
