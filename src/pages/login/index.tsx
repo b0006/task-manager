@@ -6,7 +6,6 @@ import LoginForm from 'src/modules/profile/components/LoginForm';
 export default function Login(): JSX.Element {
   return (
     <Container>
-      <div>Login</div>
       <LoginForm />
     </Container>
   );

@@ -2,11 +2,12 @@
 
 .wrapper {
   width: 100%;
+  margin: 24px 0;
 
   @media #{$screen-sm} {
     box-shadow: $shadow-default;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 48px auto;
     padding: 32px;
   }
 }
