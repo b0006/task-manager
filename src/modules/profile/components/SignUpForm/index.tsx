@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import agent from 'src/agent';
 import Input from 'src/modules/common/ui-kit/Input';
 import Button from 'src/modules/common/ui-kit/Button';
+import { useNotification } from 'src/modules/common/ui-kit/Notification';
 import FormLayout from '../FormLayout';
 
 import styles from './SignUpForm.module.scss';
@@ -23,6 +24,8 @@ const SignUpForm: React.FC = () => {
     formState: { errors },
   } = useForm<IFormFields>();
 
+  const { addNotification } = useNotification();
+
   const password = useRef('');
   password.current = watch('password', '');
 
@@ -33,6 +36,10 @@ const SignUpForm: React.FC = () => {
         console.log('result:', res);
       })
       .catch((err) => {
+        addNotification({
+          title: 'Ошибка',
+          description: 'Упс, что-то пошло не так. Пожалуйста, повторите попытку :('
+        }, { appearance: 'error' });
         console.error(err);
       });
   };
