@@ -11,7 +11,7 @@ import styles from './SignUpForm.module.scss';
 
 interface IFormFields {
   email: string;
-  login: string;
+  username: string;
   password: string;
   confirmPassword: string;
 }
@@ -31,9 +31,13 @@ const SignUpForm: React.FC = () => {
 
   const onSubmit = (data: IFormFields): void => {
     console.log(data);
-    agent.POST('/sign-up', data)
+    agent.POST('/auth/sign-up', data)
       .then((res) => {
         console.log('result:', res);
+        addNotification({
+          title: 'Успех',
+          description: 'Регистрация прошла успешно'
+        }, { appearance: 'success' });
       })
       .catch((err) => {
         addNotification({
@@ -65,8 +69,8 @@ const SignUpForm: React.FC = () => {
           className={styles.input}
           label="Логин"
           placeholder="login"
-          errorText={errors.login?.message}
-          {...register('login', {
+          errorText={errors.username?.message}
+          {...register('username', {
             required: 'Введите логин',
             minLength: {
               value: 3,
