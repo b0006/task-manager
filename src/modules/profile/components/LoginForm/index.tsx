@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import agent from 'src/agent';
@@ -6,29 +6,23 @@ import Input from 'src/modules/common/ui-kit/Input';
 import Button from 'src/modules/common/ui-kit/Button';
 import FormLayout from '../FormLayout';
 
-import styles from './SignUpForm.module.scss';
+import styles from './LoginForm.module.scss';
 
 interface IFormFields {
   email: string;
-  login: string;
   password: string;
-  confirmPassword: string;
 }
 
-const SignUpForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<IFormFields>();
 
-  const password = useRef('');
-  password.current = watch('password', '');
-
   const onSubmit = (data: IFormFields): void => {
     console.log(data);
-    agent.POST('/sign-up', data)
+    agent.POST('/sign-in', data)
       .then((res) => {
         console.log('result:', res);
       })
@@ -40,7 +34,7 @@ const SignUpForm: React.FC = () => {
   return (
     <FormLayout>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={styles.title}>Зарегистрируйтесь для своей учетной записи</h1>
+        <h1 className={styles.title}>Войдите в свою учетную запись</h1>
         <Input
           className={styles.input}
           label="Email"
@@ -51,23 +45,6 @@ const SignUpForm: React.FC = () => {
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               message: 'Некорректный email',
-            },
-          })}
-        />
-        <Input
-          className={styles.input}
-          label="Логин"
-          placeholder="login"
-          errorText={errors.login?.message}
-          {...register('login', {
-            required: 'Введите логин',
-            minLength: {
-              value: 3,
-              message: 'Слишком маленький',
-            },
-            maxLength: {
-              value: 48,
-              message: 'Слишком большой',
             },
           })}
         />
@@ -88,20 +65,10 @@ const SignUpForm: React.FC = () => {
             },
           })}
         />
-        <Input
-          className={styles.input}
-          type="password"
-          label="Подтверждение пароля"
-          errorText={errors.confirmPassword?.message}
-          {...register('confirmPassword', {
-            required: 'Подтвердите пароль',
-            validate: (value) => value === password.current || 'Пароли не совпадают',
-          })}
-        />
-        <Button className={styles.button} type="submit" text="Продолжить" theme="primary" />
+        <Button className={styles.button} type="submit" text="Войти" theme="primary" />
       </form>
     </FormLayout>
   );
 };
 
-export default SignUpForm;
+export default LoginForm;
