@@ -1,5 +1,6 @@
 import { useProfileContext, ACTIONS } from './index';
 
+import axios from 'src/agent/axios';
 import { useNotification } from 'src/modules/common/ui-kit/Notification';
 import { useFetch } from 'src/modules/common/hooks';
 import { useEffect } from 'react';
@@ -23,7 +24,8 @@ const useProfile = () => {
 
   useEffect(() => {
     if (data && !isLoading) {
-      dispatch({ type: ACTIONS.login, payload: { token: data.access_token } });
+      axios.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`;
+      dispatch({ type: ACTIONS.login });
     }
   }, [data, isLoading]);
 

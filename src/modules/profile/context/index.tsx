@@ -7,22 +7,15 @@ export enum ACTIONS {
 
 export interface IState {
   isLoggedIn: boolean;
-  token: string;
   userData: any;
 }
 
-// export interface IAction {
-//   type: ACTIONS;
-//   payload?: Partial<IState>;
-// }
-
-type TAction = { type: ACTIONS.login, payload: { token: string } } | { type: 'increment' };
+type TAction = { type: ACTIONS.login } | { type: 'increment' };
 
 export type TDispatch = React.Dispatch<TAction>;
 
 const initialState: IState = {
   isLoggedIn: false,
-  token: '',
   userData: {},
 };
 
@@ -35,7 +28,6 @@ const reducer = (state: IState, action: TAction): IState => {
       return {
         ...state,
         isLoggedIn: true,
-        token: action.payload.token
       };
     }
     default: {
