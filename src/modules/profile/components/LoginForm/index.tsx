@@ -38,10 +38,10 @@ const LoginForm: React.FC = () => {
           errorText={errors.email?.message}
           {...register('email', {
             required: 'Введите email',
-            // pattern: {
-            //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            //   message: 'Некорректный email',
-            // },
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Некорректный email',
+            },
           })}
         />
         <Input
