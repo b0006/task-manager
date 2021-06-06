@@ -9,16 +9,27 @@ interface IRouteComponentProps extends RouteProps {
   component: React.ComponentType<RouteComponentProps>;
 }
 
-const PublicRoute: React.FC<IRouteComponentProps> = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) => (
-      <Layout>
-        <Component {...props} />
-      </Layout>
-    )}
-  />
-);
+interface IRoutePublicProps extends IRouteComponentProps {
+  isRedirectAuth?: boolean;
+}
+
+const PublicRoute: React.FC<IRoutePublicProps> = observer(({ component: Component, isRedirectAuth, ...rest }) => {
+  const { profile } = profileStore;
+  if (isRedirectAuth && profile.isAuth) {
+    return <Redirect to="/" />;
+  }
+
+  return (
+    <Route
+      {...rest}
+      render={(props) => (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
+  )
+});
 
 const PrivateRoute: React.FC<IRouteComponentProps> = observer(({ component: Component, ...rest }) => {
   const { profile } = profileStore;

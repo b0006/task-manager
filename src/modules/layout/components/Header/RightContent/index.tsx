@@ -7,7 +7,7 @@ import profileStore from '../../../../profile/store';
 import styles from './RightContent.module.scss';
 
 const RightContent: React.FC = observer(() => {
-  const { profile, actionLogout, actionSetUserData } = profileStore;
+  const { profile, actionLogout } = profileStore;
 
   return (
     <div className={styles.wrapper}>
@@ -18,7 +18,6 @@ const RightContent: React.FC = observer(() => {
         <React.Fragment>
           <Button href="/sign-in" className={styles['login-button']} text="Войти" theme="flat" />
           <Button href="/sign-up" text="Регистрация" theme="primary" />
-          <Button text="dd" onClick={() => actionSetUserData({ email: 'test@mail.ru' })} />
         </React.Fragment>
       )}
     </div>
