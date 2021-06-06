@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
-import { IndexPage, SignIn, SignUp, NotFoundPage } from '../pages';
+import { IndexPage, SignInPage, SignUpPage, ProfilePage, NotFoundPage } from '../pages';
 
-import { PublicRoute } from './types';
+import { PublicRoute, PrivateRoute } from './types';
 
 const Router: React.FC = () => (
   <BrowserRouter>
     <Switch>
       <PublicRoute exact path="/" component={IndexPage} />
-      <PublicRoute exact path="/sign-in" component={SignIn} />
-      <PublicRoute exact path="/sign-up" component={SignUp} />
+      <PublicRoute exact path="/sign-in" component={SignInPage} />
+      <PublicRoute exact path="/sign-up" component={SignUpPage} />
+      <PrivateRoute exact path="/profile" component={ProfilePage} />
       <PublicRoute path="*" component={NotFoundPage} />
     </Switch>
   </BrowserRouter>
