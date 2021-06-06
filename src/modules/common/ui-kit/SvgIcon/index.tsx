@@ -1,14 +1,14 @@
 import React from 'react';
 
-import LoaderIcon from '../../../../assets/icons/loader.svg';
-import PlusIcon from '../../../../assets/icons/plus.svg';
-import CrossIcon from '../../../../assets/icons/cross.svg';
-import CheckedIcon from '../../../../assets/icons/checked.svg';
-import InfoIcon from '../../../../assets/icons/info.svg';
-import ExclamationTriangleIcon from '../../../../assets/icons/exclamationTriangle.svg';
-import ChevronDownIcon from '../../../../assets/icons/chevronDown.svg';
-import VkIcon from '../../../../assets/icons/vk.svg';
-import GoogleIcon from '../../../../assets/icons/google.svg';
+import { ReactComponent as LoaderIcon } from '../../../../assets/icons/loader.svg';
+import { ReactComponent as PlusIcon } from '../../../../assets/icons/plus.svg';
+import { ReactComponent as CrossIcon } from '../../../../assets/icons/cross.svg';
+import { ReactComponent as CheckedIcon } from '../../../../assets/icons/checked.svg';
+import { ReactComponent as InfoIcon } from '../../../../assets/icons/info.svg';
+import { ReactComponent as ExclamationTriangleIcon } from '../../../../assets/icons/exclamationTriangle.svg';
+import { ReactComponent as ChevronDownIcon } from '../../../../assets/icons/chevronDown.svg';
+import { ReactComponent as VkIcon } from '../../../../assets/icons/vk.svg';
+import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.svg';
 
 const Empty: React.FC = () => null;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Button from 'src/modules/common/ui-kit/Button';
-import { useNotification } from 'src/modules/common/ui-kit/Notification';
+import Button from '../../../common/ui-kit/Button';
+import { useNotification } from '../../../common/ui-kit/Notification';
 
 import styles from './FormLayout.module.scss';
 

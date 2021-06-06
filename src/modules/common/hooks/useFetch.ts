@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-import agent from 'src/agent';
+import agent from '../../../agent';
 
 type Method = keyof typeof agent;
 

@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
 import Icon, { ICON_LIST } from '../SvgIcon';
 
@@ -81,9 +82,9 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
     );
 
     return href ? (
-      <a className={styles.link} href={href}>
+      <Link to={href} className={styles.link}>
         {button}
-      </a>
+      </Link>
     ) : (
       button
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Header from 'src/modules/layout/components/Header';
-import Footer from 'src/modules/layout/components/Footer';
+import Header from '../Header';
+import Footer from '../Footer';
 
 import styles from './Layout.module.scss';
 

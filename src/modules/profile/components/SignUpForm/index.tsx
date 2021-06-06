@@ -1,10 +1,8 @@
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import agent from 'src/agent';
-import Input from 'src/modules/common/ui-kit/Input';
-import Button from 'src/modules/common/ui-kit/Button';
-import { useNotification } from 'src/modules/common/ui-kit/Notification';
+import Input from '../../../common/ui-kit/Input';
+import Button from '../../../common/ui-kit/Button';
 import FormLayout from '../FormLayout';
 
 import styles from './SignUpForm.module.scss';
@@ -24,28 +22,11 @@ const SignUpForm: React.FC = () => {
     formState: { errors },
   } = useForm<IFormFields>();
 
-  const { addNotification } = useNotification();
-
   const password = useRef('');
   password.current = watch('password', '');
 
   const onSubmit = (data: IFormFields): void => {
     console.log(data);
-    agent.POST('/auth/sign-up', data)
-      .then((res) => {
-        console.log('result:', res);
-        addNotification({
-          title: 'Успех',
-          description: 'Регистрация прошла успешно'
-        }, { appearance: 'success' });
-      })
-      .catch((err) => {
-        addNotification({
-          title: 'Ошибка',
-          description: 'Упс, что-то пошло не так. Пожалуйста, повторите попытку :('
-        }, { appearance: 'error' });
-        console.error(err);
-      });
   };
 
   return (

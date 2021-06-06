@@ -7,7 +7,7 @@ import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <Container className={styles.inner}>
         <div className={styles.left}>left</div>
         <div className={styles.center}>center</div>
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
           <RightContent />
         </div>
       </Container>
-    </div>
+    </header>
   );
 };
 

@@ -66,6 +66,7 @@ export const useNotification = () => {
       return;
     }
 
+    // @ts-ignore
     dispatch({ type: ACTIONS.add, payload: { content, id, ...options } });
 
     return id;
@@ -76,6 +77,7 @@ export const useNotification = () => {
       return;
     }
 
+    // @ts-ignore
     dispatch({ type: ACTIONS.close, payload: { id } });
   };
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import Input from 'src/modules/common/ui-kit/Input';
-import Button from 'src/modules/common/ui-kit/Button';
-import useProfile from 'src/modules/profile/context/useProfile';
+import Input from '../../../common/ui-kit/Input';
+import Button from '../../../common/ui-kit/Button';
 
 import FormLayout from '../FormLayout';
 
@@ -15,8 +14,6 @@ interface IFormFields {
 }
 
 const LoginForm: React.FC = () => {
-  const { actionLogin } = useProfile();
-
   const {
     register,
     handleSubmit,
@@ -24,7 +21,7 @@ const LoginForm: React.FC = () => {
   } = useForm<IFormFields>();
 
   const onSubmit = (data: IFormFields): void => {
-    actionLogin(data.email, data.password);
+    console.log(data);
   };
 
   return (
