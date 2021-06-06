@@ -11,12 +11,13 @@ export interface IState {
   list: any[];
 }
 
-export interface IAction {
-  type: ACTIONS;
-  payload?: Partial<IState>;
-}
+type Action =
+  { type: ACTIONS.add, payload: any } |
+  { type: ACTIONS.close, payload: any } |
+  { type: ACTIONS.remove, payload: any } |
+  { type: ACTIONS.removeAll };
 
-export type TDispatch = React.Dispatch<IAction>;
+export type TDispatch = React.Dispatch<Action>;
 
 const initialState: IState = {
   list: [],
@@ -25,7 +26,7 @@ const initialState: IState = {
 const NotificationStateContext = createContext(initialState);
 const NotificationDispatchContext = createContext<TDispatch>(() => ({}));
 
-const reducer = (state: IState, action: any): IState => {
+const reducer = (state: IState, action: Action): IState => {
   switch (action.type) {
     case ACTIONS.add: {
       return {
@@ -73,9 +74,9 @@ const NotificationProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <NotificationDispatchContext.Provider value={dispatch}>
-      <NotificationStateContext.Provider value={state}>{children}</NotificationStateContext.Provider>
-    </NotificationDispatchContext.Provider>
+    <NotificationStateContext.Provider value={state}>
+      <NotificationDispatchContext.Provider value={dispatch}>{children}</NotificationDispatchContext.Provider>
+    </NotificationStateContext.Provider>
   );
 };
 

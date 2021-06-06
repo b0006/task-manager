@@ -6,7 +6,7 @@ type TObject = Record<string, unknown>;
 
 const timeout = 60000;
 
-export default {
+const methods = {
   POST<T = TObject, R = TObject>(path: string, data?: T): Promise<AxiosResponse<R>> {
     return axios.post(`${path}/`, data, { timeout });
   },
@@ -17,4 +17,6 @@ export default {
       timeout,
     });
   },
-};
+}
+
+export default methods;

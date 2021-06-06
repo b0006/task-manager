@@ -2,7 +2,7 @@ import { observable, action, makeAutoObservable } from 'mobx';
 
 const LS_PROFILE_DATA = 'LS_PROFILE_DATA';
 
-interface IProfileData {
+export interface IProfileData {
   email?: string;
 }
 

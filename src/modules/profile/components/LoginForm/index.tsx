@@ -1,8 +1,12 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
 import { useForm } from 'react-hook-form';
 
 import Input from '../../../common/ui-kit/Input';
 import Button from '../../../common/ui-kit/Button';
+import { useNotification } from '../../../common/ui-kit/Notification';
+import { useFetch } from '../../../common/hooks';
+import profileStore, { IProfileData } from '../../store';
 
 import FormLayout from '../FormLayout';
 
@@ -13,15 +17,30 @@ interface IFormFields {
   password: string;
 }
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC = observer(() => {
+  const { addNotification } = useNotification();
+  const { actionSetUserData } = profileStore;
+
+  const [signInRequest] = useFetch<IFormFields, IProfileData>('/auth/sign-in', 'POST');
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormFields>();
 
-  const onSubmit = (data: IFormFields): void => {
-    console.log(data);
+  const onSubmit = async (data: IFormFields): Promise<void> => {
+    const { response, error } = await signInRequest(data);
+
+    if (error || !response) {
+      addNotification(
+        { title: 'Ошибка', description: error?.message?.toString() || 'Неизвестная ошибка' },
+        { appearance: 'error' }
+      );
+      return;
+    }
+
+    actionSetUserData(response);
   };
 
   return (
@@ -62,6 +81,6 @@ const LoginForm: React.FC = () => {
       </form>
     </FormLayout>
   );
-};
+});
 
 export default LoginForm;

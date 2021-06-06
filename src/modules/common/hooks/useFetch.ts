@@ -2,47 +2,56 @@ import { useState, useCallback } from 'react';
 
 import agent from '../../../agent';
 
-type Method = keyof typeof agent;
+type TMethod = keyof typeof agent;
+type TError = IError | null;
+
+interface IFetchReturn<T> {
+  response: T | null;
+  error: TError;
+}
 
 interface IError {
   statusCode: number;
   message: Error | string | null;
 }
 
-interface IResponse<R> {
+interface IReturn {
   isLoading: boolean;
-  data: R | undefined;
-  error: IError | null;
 }
 
-const useFetch = <T = object, R = object>(url: string, method: Method): [IResponse<R>, (data?: T) => void] => {
+const useFetch = <T = object, R = object>(url: string, method: TMethod): [(data?: T) => Promise<IFetchReturn<R>>, IReturn] => {
   const [isLoading, setIsLoading] = useState(false);
-  const [responseData, setResponseData] = useState<R>();
-  const [error, setError] = useState<IError | null>(null);
 
-  const fetchData = useCallback(async (data?: T) => {
+  const fetchData = useCallback(async (data?: T): Promise<IFetchReturn<R>> => {
     setIsLoading(true);
-    setError(null);
 
     try {
       const response = await agent[method]<T, R>(url, data);
       if (response.status < 200 && response.status >= 300) {
         // TODO: обработать корректно неудачные запросы
-        throw 'Unknown error';
+        throw new Error('Неизвестная ошибка');
       }
-      setResponseData(response.data);
+
+      return {
+        response: response.data,
+        error: null,
+      }
     } catch (err) {
       const message = err?.response?.data?.message || err.toString();
-      setError({
-        statusCode: err.response.status,
-        message,
-      });
+
+      return {
+        response: null,
+        error: {
+          statusCode: err?.response?.status,
+          message,
+        }
+      }
     } finally {
       setIsLoading(false);
     }
   } ,[method, url]);
 
-  return [{ isLoading, data: responseData, error }, fetchData];
+  return [fetchData, { isLoading }];
 };
 
 export default useFetch;

@@ -24,16 +24,14 @@ const NotificationItem: React.FC<INotificationState> = ({
   showCloseButton = true,
   needClose,
 }) => {
-  const [, dispatch] = useNotificationContext();
+  const [,dispatch] = useNotificationContext();
 
   const onClose = (): void => {
-    // @ts-ignore
     dispatch({ type: ACTIONS.close, payload: { id } });
   };
 
   const onCloseEnd = (): void => {
     if (needClose) {
-      // @ts-ignore
       dispatch({ type: ACTIONS.remove, payload: { id } });
     }
   };
