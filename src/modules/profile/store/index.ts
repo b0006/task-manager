@@ -3,12 +3,14 @@ import { observable, action, makeAutoObservable } from 'mobx';
 const LS_PROFILE_DATA = 'LS_PROFILE_DATA';
 
 export interface IProfileData {
-  email?: string;
+  username: string;
+  email: string;
+  id: string;
 }
 
 interface IProfile {
   isAuth: boolean;
-  data: IProfileData;
+  data: Partial<IProfileData>;
 }
 
 const initProfileData: IProfile = {
