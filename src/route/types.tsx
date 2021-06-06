@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect, RouteComponentProps, RouteProps } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
-import userStore from '../modules/profile/store';
+import profileStore from '../modules/profile/store';
 import Layout from '../modules/layout/components/Layout';
 
 interface IRouteComponentProps extends RouteProps {
@@ -21,12 +21,12 @@ const PublicRoute: React.FC<IRouteComponentProps> = ({ component: Component, ...
 );
 
 const PrivateRoute: React.FC<IRouteComponentProps> = observer(({ component: Component, ...rest }) => {
-  const { user } = userStore;
+  const { profile } = profileStore;
   return (
     <Route
       {...rest}
       render={(props) =>
-        user.isAuth ? (
+        profile.isAuth ? (
           <Layout>
             <Component {...props} />
           </Layout>

@@ -1,4 +1,6 @@
-import { observable, action, runInAction } from 'mobx';
+import { observable, action, makeAutoObservable } from 'mobx';
+
+const LS_PROFILE_DATA = 'LS_PROFILE_DATA';
 
 interface IProfileData {
   email?: string;
@@ -14,25 +16,34 @@ const initProfileData: IProfile = {
   data: {}
 };
 
-export class UserStore {
-  @observable public user: IProfile = initProfileData;
+export class ProfileStore {
+  profile: IProfile = initProfileData;
 
-  @action public setUserData = (data: IProfileData) => {
-    runInAction(() => {
-      this.user = {
-        ...this.user,
-        isAuth: true,
-        data
-      };
+  constructor () {
+    const dataFromLocalStorage = localStorage.getItem(LS_PROFILE_DATA);
+    this.profile = dataFromLocalStorage ? JSON.parse(dataFromLocalStorage) : initProfileData;
+
+    makeAutoObservable(this, {
+      profile: observable,
+      actionLogout: action,
+      actionSetUserData: action,
     });
+  }
 
-    // localStorage.setItem(LStorage.user, JSON.stringify(this.user));
+  actionSetUserData = (data: IProfileData) => {
+    this.profile = {
+      ...this.profile,
+      isAuth: true,
+      data
+    };
+
+    localStorage.setItem(LS_PROFILE_DATA, JSON.stringify(this.profile));
   };
 
-  @action public logout = () => {
-    this.user = initProfileData;
-    // localStorage.removeItem(LStorage.user);
+  actionLogout = () => {
+    this.profile = initProfileData;
+    localStorage.removeItem(LS_PROFILE_DATA);
   }
 }
 
-export default new UserStore();
+export default new ProfileStore();
