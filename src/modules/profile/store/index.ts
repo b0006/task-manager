@@ -1,4 +1,4 @@
-import { observable, action, makeAutoObservable } from 'mobx';
+import { observable, action, computed, toJS, makeAutoObservable } from 'mobx';
 
 const LS_PROFILE_DATA = 'LS_PROFILE_DATA';
 
@@ -10,12 +10,12 @@ export interface IProfileData {
 
 interface IProfile {
   isAuth: boolean;
-  data: Partial<IProfileData>;
+  data: IProfileData | null;
 }
 
 const initProfileData: IProfile = {
   isAuth: false,
-  data: {}
+  data: null
 };
 
 export class ProfileStore {
@@ -29,6 +29,7 @@ export class ProfileStore {
       profile: observable,
       actionLogout: action,
       actionSetUserData: action,
+      profileData: computed,
     });
   }
 
@@ -45,6 +46,10 @@ export class ProfileStore {
   actionLogout = () => {
     this.profile = initProfileData;
     localStorage.removeItem(LS_PROFILE_DATA);
+  }
+
+  get profileData() {
+    return toJS(this.profile.data);
   }
 }
 

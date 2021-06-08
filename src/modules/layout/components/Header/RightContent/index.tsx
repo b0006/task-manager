@@ -7,12 +7,15 @@ import profileStore from '../../../../profile/store';
 import styles from './RightContent.module.scss';
 
 const RightContent: React.FC = observer(() => {
-  const { profile, actionLogout } = profileStore;
+  const { profile, profileData, actionLogout } = profileStore;
 
   return (
     <div className={styles.wrapper}>
       {profile.isAuth && (
-        <Button text="Выйти" theme="primary" onClick={actionLogout} />
+        <React.Fragment>
+          <Button href={`/${profileData?.username}`} text="Профиль" icon="user" iconSide="right" theme="secondary" />
+          <Button className={styles['logout-button']} text="Выйти" icon="logout" iconSide="right" theme="primary" onClick={actionLogout} />
+        </React.Fragment>
       )}
       {!profile.isAuth && (
         <React.Fragment>
