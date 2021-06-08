@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { IProfileData } from '../../store';
-import userImg from '../../../../assets/images/user.png';
 
 import styles from './PreviewBlock.module.scss';
 
@@ -12,8 +11,8 @@ interface IProps {
 const PreviewBlock: React.FC<IProps> = ({ profileData }) => {
   return (
     <div className={styles['preview-block']}>
-      <div className={styles['img-wrapper']}>
-        <img className={styles.img} src={userImg} alt={profileData?.username} />
+      <div className={styles['avatar-wrapper']}>
+        <div className={styles['avatar-char']}>{profileData?.username.charAt(0)}</div>
       </div>
       <div>{profileData?.username}</div>
     </div>
