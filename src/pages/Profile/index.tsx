@@ -13,7 +13,7 @@ interface IParams {
 
 const ProfilePage: React.FC = observer(() => {
   const [userData, setUserData] = useState<IProfileData>();
-  const [fetchUserData] = useFetch<IParams, IProfileData>('/api/user', 'GET');
+  const [fetchUserData] = useFetch<IParams, IProfileData>('/api/profile', 'GET');
 
   const history = useHistory();
   const params = useParams<IParams>();
@@ -25,7 +25,7 @@ const ProfilePage: React.FC = observer(() => {
         const { error, response } = await fetchUserData({ username: params.username });
 
         if (!response) {
-          history.push('/404');
+          history.replace('/404');
           return;
         }
 
