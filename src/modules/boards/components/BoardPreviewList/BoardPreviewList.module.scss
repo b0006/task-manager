@@ -1,0 +1,16 @@
+@import 'src/styles/utils';
+
+.board-preview-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  &__item {
+    max-width: 100%;
+    min-height: 130px;
+    min-width: 210px;
+    flex: 1;
+  }
+}

@@ -1,0 +1,29 @@
+@import 'src/styles/utils';
+
+.add-board-card {
+  $self: &;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $c-gray-l;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: $c-gray-s;
+
+    #{$self}__icon {
+      color: $c-primary-hover
+    }
+  }
+
+  &__icon {
+    color: $c-primary;
+    height: 36px;
+    width: 36px;
+    transition: color 0.25s;
+  }
+}

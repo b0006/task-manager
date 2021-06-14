@@ -1,0 +1,11 @@
+@import 'src/styles/utils';
+
+.board-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $c-white;
+  border: 1px solid $c-primary;
+  border-radius: 8px;
+  cursor: pointer;
+}

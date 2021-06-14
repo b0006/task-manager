@@ -5,7 +5,7 @@ import { IProfileData } from '../../store';
 import styles from './PreviewBlock.module.scss';
 
 interface IProps {
-  profileData?: IProfileData
+  profileData?: IProfileData | null;
 }
 
 const PreviewBlock: React.FC<IProps> = ({ profileData }) => {
