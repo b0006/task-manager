@@ -11,6 +11,8 @@ import { useNotification } from '../../../../common/ui-kit/Notification';
 
 import boardStore from '../../../store';
 
+import styles from './AddBoardForm.module.scss';
+
 interface IProps {
   isVisible: boolean;
   onHide: () => void;
@@ -55,9 +57,10 @@ const AddBoardForm: React.FC<IProps> = observer(({ isVisible, onHide }) => {
   return (
     <ModalLayout overlayClickClose onClose={onHide} isVisible={isVisible}>
       <form onSubmit={handleSubmit(onSubmit)}>
-      <Input
+        <Input
           type="text"
           label="Название доски"
+          className={styles['add-board-form__input']}
           errorText={errors.title?.message}
           {...register('title', {
             required: 'Введите название',
@@ -71,7 +74,7 @@ const AddBoardForm: React.FC<IProps> = observer(({ isVisible, onHide }) => {
             },
           })}
         />
-        <Button type="submit" text="Создать" theme="secondary" icon="plus" iconSide="right" />
+        <Button className={styles['add-board-form__button']} type="submit" text="Создать" theme="secondary" icon="plus" iconSide="right" />
       </form>
     </ModalLayout>
   )

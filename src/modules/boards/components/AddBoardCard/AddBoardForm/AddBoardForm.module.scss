@@ -1,0 +1,12 @@
+@import 'src/styles/utils';
+
+.add-board-form {
+  &__input {
+    margin-top: 10px;
+    display: flex;
+  }
+
+  &__button {
+    margin-top: 20px;
+  }
+}

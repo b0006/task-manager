@@ -17,7 +17,7 @@ const Router: React.FC = () => (
 
         <PrivateRoute exact path="/:username" component={ProfilePage} />
         <PrivateRoute exact path="/:username/boards" component={BoardsPage} />
-        <PrivateRoute exact path="/:username/boards/:boardTitle" component={BoardPage} />
+        <PrivateRoute exact path="/:username/boards/:transpileTitle" component={BoardPage} />
 
         <PublicRoute path="*" component={NotFoundPage} />
       </Switch>
