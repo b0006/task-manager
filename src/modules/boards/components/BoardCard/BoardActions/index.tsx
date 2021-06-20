@@ -30,6 +30,7 @@ const BoardActions: React.FC<IProps> = ({ id, title }) => {
     const { error, response } = await removeRequest({ id });
 
     if (!error && response) {
+      onCloseRemovePopup();
       addNotification({
         title: 'Успех',
         description: `Доска "${title}" успешно удалена`
@@ -37,7 +38,6 @@ const BoardActions: React.FC<IProps> = ({ id, title }) => {
         appearance: 'success',
       });
       actionRemovePreviewItem(id);
-      onCloseRemovePopup();
     }
   }
 
