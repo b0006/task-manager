@@ -17,6 +17,10 @@ const methods = {
       timeout,
     });
   },
+
+  DELETE<T = TObject, R = TObject>(path: string, data?: T): Promise<AxiosResponse<R>> {
+    return axios.delete(`${path}/`, { timeout, data });
+  },
 }
 
 export default methods;

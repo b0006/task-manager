@@ -1,0 +1,36 @@
+@import 'src/styles/utils';
+
+.board-actions {
+  $self: &;
+
+  &__item {
+    cursor: pointer;
+    display: flex;
+    background-color: transparent;
+    border-radius: 100%;
+    padding: 4px;
+
+    &_remove {
+      border: 1px solid $c-black;
+      transition: border-color 0.25s;
+
+      #{$self}__icon {
+        color: $c-black;
+        transition: color 0.25s;
+      }
+
+      &:hover {
+        border: 1px solid $c-red-super;
+
+        #{$self}__icon {
+          color: $c-red-super;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    height: 18px;
+    width: 18px;
+  }
+}

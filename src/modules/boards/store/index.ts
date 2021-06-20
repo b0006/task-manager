@@ -18,6 +18,7 @@ export class BoardStore {
       actionSetPreviewList: action,
       actionUpdatePreviewItem: action,
       actionAddPreviewItem: action,
+      actionRemovePreviewItem: action,
       previewList: computed,
     });
   }
@@ -28,6 +29,10 @@ export class BoardStore {
 
   actionAddPreviewItem = (board: IBoardPreview) => {
     this.data.previewList.push(board);
+  }
+
+  actionRemovePreviewItem = (id: string) => {
+    this.data.previewList = this.data.previewList.filter((board) => board.id !== id);
   }
 
   actionUpdatePreviewItem = (id: string, board: IBoardPreview) => {

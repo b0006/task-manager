@@ -16,7 +16,7 @@ const BoardPreviewList: React.FC<IProps> = ({ list }) => {
     <div className={styles['board-preview-list']}>
       <AddBoardCard className={styles['board-preview-list__item']} />
       {list.map((board) => (
-        <BoardCard key={board.id} title={board.title} className={styles['board-preview-list__item']} />
+        <BoardCard key={board.id} className={styles['board-preview-list__item']} {...board} />
       ))}
     </div>
   )

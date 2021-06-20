@@ -1,6 +1,9 @@
 @import 'src/styles/utils';
 
 .board-card {
+  $self: &;
+
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,4 +11,22 @@
   border: 1px solid $c-primary;
   border-radius: 8px;
   cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: $c-primary-disabled;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $c-primary;
+    font-weight: bold;
+  }
+
+  &__actions {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
 }

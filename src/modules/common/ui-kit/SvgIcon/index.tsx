@@ -11,6 +11,7 @@ import { ReactComponent as VkIcon } from '../../../../assets/icons/vk.svg';
 import { ReactComponent as GoogleIcon } from '../../../../assets/icons/google.svg';
 import { ReactComponent as LogoutIcon } from '../../../../assets/icons/logout.svg';
 import { ReactComponent as UserIcon } from '../../../../assets/icons/user.svg';
+import { ReactComponent as TrashIcon } from '../../../../assets/icons/trash.svg';
 
 const Empty: React.FC = () => null;
 
@@ -27,6 +28,7 @@ export const ICON_LIST = {
   google: GoogleIcon,
   logout: LogoutIcon,
   user: UserIcon,
+  trash: TrashIcon,
 };
 
 export interface IProps extends React.SVGAttributes<SVGElement> {

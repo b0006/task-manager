@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 
 import { Provider } from '../modules/common/ui-kit/Notification';
-import { IndexPage, SignInPage, SignUpPage, ProfilePage, BoardsPage, NotFoundPage } from '../pages';
+import { IndexPage, SignInPage, SignUpPage, ProfilePage, BoardsPage, BoardPage, NotFoundPage } from '../pages';
 
 import { PublicRoute, PrivateRoute } from './types';
 
@@ -17,6 +17,7 @@ const Router: React.FC = () => (
 
         <PrivateRoute exact path="/:username" component={ProfilePage} />
         <PrivateRoute exact path="/:username/boards" component={BoardsPage} />
+        <PrivateRoute exact path="/:username/boards/:boardTitle" component={BoardPage} />
 
         <PublicRoute path="*" component={NotFoundPage} />
       </Switch>
