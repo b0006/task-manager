@@ -41,6 +41,14 @@ const AddBoardForm: React.FC<IProps> = observer(({ isVisible, onHide }) => {
         title: 'Успех',
         description: `Доска "${data.title}" успешно создана`
       }, { appearance: 'success' });
+    } else if (error) {
+      addNotification({
+        title: 'Ошибка',
+        description: error?.message?.toString() || 'Неизвестная ошибка'
+      }, {
+        appearance: 'error',
+        id: `remove-${data.title}`
+      });
     }
   };
 
